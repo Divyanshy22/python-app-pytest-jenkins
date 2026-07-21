@@ -34,4 +34,16 @@ pipeline {
             echo 'Tests failed — check console output above for details.'
         }
     }
+    post {
+    success {
+        mail to: 'ydivyansh68@gmail.com',
+             subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+             body: "Good news — the build ${env.BUILD_NUMBER} for ${env.JOB_NAME} completed successfully.\n\nCheck it out: ${env.BUILD_URL}"
+    }
+    failure {
+        mail to: 'ydivyansh68@gmail.com',
+             subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+             body: "The build ${env.BUILD_NUMBER} for ${env.JOB_NAME} failed.\n\nCheck the console output: ${env.BUILD_URL}console"
+    }
+}
 }
