@@ -21,7 +21,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'pytest test_calculator.py -v'
+                sh 'pytest -m test_calculator.py -v'
             }
         }
     }
