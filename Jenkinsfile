@@ -25,15 +25,6 @@ pipeline {
     }
 }
     }
-
-    post {
-        success {
-            echo 'All tests passed!'
-        }
-        failure {
-            echo 'Tests failed — check console output above for details.'
-        }
-    }
     post {
     success {
         mail to: 'ydivyansh68@gmail.com',
