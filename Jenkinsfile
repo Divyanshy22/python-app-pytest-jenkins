@@ -20,10 +20,10 @@ pipeline {
         }
 
         stage('Run Tests') {
-            steps {
-                sh 'python3 -m test_calculator.py -v'
-            }
-        }
+    steps {
+        sh 'python3 -m pytest test_calculator.py -v'
+    }
+}
     }
 
     post {
