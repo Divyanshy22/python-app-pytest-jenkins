@@ -14,7 +14,7 @@ def test_multiply():
     assert multiply(-2, 3) == -6
 
 def test_divide():
-    assert divide(10, 2) == 6
+    assert divide(10, 2) == 5
     assert divide(9, 3) == 3
 
 def test_divide_by_zero():
