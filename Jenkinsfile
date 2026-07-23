@@ -1,12 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.13-slim'
-        }
-    }
+    agent any
 
     environment {
-        PATH = "/usr/local/bin:${env.PATH}"
+        PATH = "/opt/homebrew/bin:/usr/local/bin:${env.PATH}"
     }
 
     stages {
@@ -17,15 +13,15 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Run Tests in Container') {
             steps {
-                sh 'pip install -r requirements.txt'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'pytest test_calculator.py -v'
+                sh '''
+                    docker run --rm \
+                      -v "$WORKSPACE":/app \
+                      -w /app \
+                      python:3.13-slim \
+                      sh -c "pip install -r requirements.txt && pytest test_calculator.py -v"
+                '''
             }
         }
     }
