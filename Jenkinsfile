@@ -18,7 +18,7 @@ pipeline {
                 sh '''
                     docker run --rm \
                       -v "$WORKSPACE":/app \
-                      -w /app \
+                      -w /app \ 
                       python:3.13-slim \
                       sh -c "pip install -r requirements.txt && pytest test_calculator.py -v"
                 '''
